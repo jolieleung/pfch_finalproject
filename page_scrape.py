@@ -1,58 +1,40 @@
-from cgitb import html
+import glob
 from bs4 import BeautifulSoup
-import requests
+import json
 
-html_text = requests.get('https://www.missouribotanicalgarden.org/PlantFinder/PlantFinderProfileResults.aspx?cv=5&chr=32')
+all_files = glob.glob('html/*.html')
 
-# with open(r'Final_Project\abutilon.html',encoding="utf-8") as html_file:
-#     abutilon = html_file.read()
-    #print(abutilon) - test
+all_data = []
 
-    soup = BeautifulSoup(abutilon, 'lxml')
-    # #print(soup.prettify()) - test
+for file_name in all_files:
+    #print(file_name)
 
+    with open(file_name) as infile:
 
-    # characteristics_html_tags = soup.find_all('div')
-    # #print(tags)
+        html = infile.read()
 
-    # for characteristics in characteristics_html_tags:
-    #     print(characteristics.text)
+        print(file_name)
+        #print(html)
 
-    # type_text = soup.find_all('div', class_='row', id="MainContentPlaceHolder_TypeRow")
-    # for type in type_text:
-    #      print(type.text)
+        soup = BeautifulSoup(html,'html.parser')
 
-    # zone_text = soup.find_all('div', class_='row', id="MainContentPlaceHolder_ZoneRow")
-    # for zone in zone_text:
-    #      print(zone.text)
+        for row in range(0,12):
+            
+            for left_or_right in ['Left', 'Right']:
 
-    # height_text = soup.find_all('div', class_='row', id="MainContentPlaceHolder_HeightRow")
-    # for height in height_text:
-    #      print(height.text)
+                data={}
+                
+                use_id = f"MainContentPlaceHolder_SearchResultsList_SearchResultControl{left_or_right}_{row}_TaxonHTMLName_{row}"
 
+                element = soup.find('a', {'id': use_id})
 
-    plants = soup.find_all('a', id = "MainContentPlaceHolder_SearchResultsList_SearchResultControlLeft_0_TaxonHTMLName_0")
+                #print(element.get_text().strip())
 
-    scientific_name = soup.find('title').text.replace('  ','')
-    common_name = soup.find('div', class_='row', id="MainContentPlaceHolder_CommonNameRow").text.replace('  ','')
-    type = soup.find('div', class_='row', id="MainContentPlaceHolder_TypeRow").text.replace('  ','')
-    zone = soup.find('div', class_='row', id="MainContentPlaceHolder_ZoneRow").text.replace('  ','')
-    height = soup.find('div', class_='row', id="MainContentPlaceHolder_HeightRow").text.replace('  ','')
-    spread = soup.find('div', class_='row', id="MainContentPlaceHolder_SpreadRow").text.replace('  ','')
-    bloom_time = soup.find('div', class_='row', id="MainContentPlaceHolder_BloomTimeRow").text.replace('  ','')
-    bloom_desc = soup.find('div', class_='row', id="MainContentPlaceHolder_ColorTextRow").text.replace('  ','')
-    sun = soup.find('div', class_='row', id="MainContentPlaceHolder_SunRow").text.replace('  ','')
-    water = soup.find('div', class_='row', id="MainContentPlaceHolder_WaterRow").text.replace('  ','')
-    maintenance = soup.find('div', class_='row', id="MainContentPlaceHolder_MaintenanceRow").text.replace('  ','')
+                data['plant_link'] = 'https://www.missouribotanicalgarden.org' + element['href']
 
-    print(scientific_name)
-    print(common_name)
-    print(type)
-    print(zone)
-    print(height)
-    print(spread)
-    print(bloom_time)
-    print(bloom_desc)
-    print(sun)
-    print(water)
-    print(maintenance)
+                data['taxon_name']=element.get_text().strip()
+            
+                #print(data)
+                all_data.append(data)
+
+json.dump(all_data,open('all_data.json','w'), indent=2)

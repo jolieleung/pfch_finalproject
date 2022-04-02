@@ -1,0 +1,135 @@
+<html><head>
+        <title>The wait operation timed out</title>
+        <meta name="viewport" content="width=device-width">
+        <style>
+         body {font-family:"Verdana";font-weight:normal;font-size: .7em;color:black;} 
+         p {font-family:"Verdana";font-weight:normal;color:black;margin-top: -5px}
+         b {font-family:"Verdana";font-weight:bold;color:black;margin-top: -5px}
+         H1 { font-family:"Verdana";font-weight:normal;font-size:18pt;color:red }
+         H2 { font-family:"Verdana";font-weight:normal;font-size:14pt;color:maroon }
+         pre {font-family:"Consolas","Lucida Console",Monospace;font-size:11pt;margin:0;padding:0.5em;line-height:14pt}
+         .marker {font-weight: bold; color: black;text-decoration: none;}
+         .version {color: gray;}
+         .error {margin-bottom: 10px;}
+         .expandable { text-decoration:underline; font-weight:bold; color:navy; cursor:hand; }
+         @media screen and (max-width: 639px) {
+          pre { width: 440px; overflow: auto; white-space: pre-wrap; word-wrap: break-word; }
+         }
+         @media screen and (max-width: 479px) {
+          pre { width: 280px; }
+         }
+        </style>
+    </head>
+
+    <body bgcolor="white">
+
+            <span><h1>Server Error in '/PlantFinder' Application.<hr width="100%" size="1" color="silver"></h1>
+
+            <h2> <i>The wait operation timed out</i> </h2></span>
+
+            <font face="Arial, Helvetica, Geneva, SunSans-Regular, sans-serif ">
+
+            <b> Description: </b>An unhandled exception occurred during the execution of the current web request. Please review the stack trace for more information about the error and where it originated in the code.
+
+            <br><br>
+
+            <b> Exception Details: </b>System.ComponentModel.Win32Exception: The wait operation timed out<br><br>
+
+            <b>Source Error:</b> <br><br>
+
+            <table width="100%" bgcolor="#ffffcc">
+               <tbody><tr>
+                  <td>
+                      <code>
+
+An unhandled exception was generated during the execution of the current web request. Information regarding the origin and location of the exception can be identified using the exception stack trace below.</code>
+
+                  </td>
+               </tr>
+            </tbody></table>
+
+            <br>
+
+            <b>Stack Trace:</b> <br><br>
+
+            <table width="100%" bgcolor="#ffffcc">
+               <tbody><tr>
+                  <td>
+                      <code><pre>
+[Win32Exception (0x80004005): The wait operation timed out]
+
+[SqlException (0x80131904): Execution Timeout Expired.  The timeout period elapsed prior to completion of the operation or the server is not responding.]
+   System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction) +3318108
+   System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose) +736
+   System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean&amp; dataReady) +4061
+   System.Data.SqlClient.SqlDataReader.TryConsumeMetaData() +90
+   System.Data.SqlClient.SqlDataReader.get_MetaData() +99
+   System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted) +604
+   System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task&amp; task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest) +3303
+   System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task&amp; task, Boolean&amp; usedCache, Boolean asyncWrite, Boolean inRetry) +667
+   System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method) +83
+   System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method) +301
+   System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior) +105
+   MOBOT.DataAccess.SqlHelper`1.executeReader(TransporterCallBack transporterCallBack, SqlCommand command, LoadObjectCallBack loadObjectCallBack) in C:\Projects\MOBOT.DataAccess\MOBOT.DataAccess\SqlHelper.cs:46
+   MOBOT.DataAccess.SqlHelper`1.ExecuteReader(SqlCommand command) in C:\Projects\MOBOT.DataAccess\MOBOT.DataAccess\SqlHelper.cs:111
+   PlantRecords.DAL.PlantFinderDAL.PlantFinderSearchPaging(SqlConnection sqlConnection, SqlTransaction sqlTransaction, PlantFinderSearchCriteria sc) in C:\mobottfs\PlantRecords\PlantRecords.DAL\Concrete\PlantFinderDAL.cs:71
+   PlantRecords.Web.PlantFinder.PlantFinderHelper.PlantFinderSearch(Nullable`1 startRow, Nullable`1 pageSize, Nullable`1 orderBy) in C:\mobottfs\PlantRecords\PlantRecords.Web.PlantFinder\PlantFinder\PlantFinderHelper.cs:160
+   PlantRecords.Web.PlantFinder.PlantFinderProfileResults.search() in C:\mobottfs\PlantRecords\PlantRecords.Web.PlantFinder\PlantFinder\PlantFinderProfileResults.aspx.cs:61
+   PlantRecords.Web.PlantFinder.PlantFinderProfileResults.pagingUserControlTop_Search(Object sender, EventArgs e) in C:\mobottfs\PlantRecords\PlantRecords.Web.PlantFinder\PlantFinder\PlantFinderProfileResults.aspx.cs:121
+   PlantRecords.Web.PlantFinder.SearchPagingControl.raiseSearch() in C:\mobottfs\PlantRecords\PlantRecords.Web.PlantFinder\PlantFinder\Controls\SearchPagingControl.ascx.cs:225
+   PlantRecords.Web.PlantFinder.SearchPagingControl.pageButton_Click(Object sender, EventArgs e) in C:\mobottfs\PlantRecords\PlantRecords.Web.PlantFinder\PlantFinder\Controls\SearchPagingControl.ascx.cs:326
+   System.Web.UI.WebControls.ImageButton.OnClick(ImageClickEventArgs e) +141
+   System.Web.UI.WebControls.ImageButton.RaisePostBackEvent(String eventArgument) +186
+   System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint) +5028
+</pre></code>
+
+                  </td>
+               </tr>
+            </tbody></table>
+
+            <br>
+
+            <hr width="100%" size="1" color="silver">
+
+            <b>Version Information:</b>&nbsp;Microsoft .NET Framework Version:4.0.30319; ASP.NET Version:4.7.3905.0
+
+            </font>
+
+    
+
+<!-- 
+[Win32Exception]: The wait operation timed out
+[SqlException]: Execution Timeout Expired.  The timeout period elapsed prior to completion of the operation or the server is not responding.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MOBOT.DataAccess.SqlHelper`1.executeReader(TransporterCallBack transporterCallBack, SqlCommand command, LoadObjectCallBack loadObjectCallBack) in C:\Projects\MOBOT.DataAccess\MOBOT.DataAccess\SqlHelper.cs:line 46
+   at MOBOT.DataAccess.SqlHelper`1.ExecuteReader(SqlCommand command) in C:\Projects\MOBOT.DataAccess\MOBOT.DataAccess\SqlHelper.cs:line 111
+   at PlantRecords.DAL.PlantFinderDAL.PlantFinderSearchPaging(SqlConnection sqlConnection, SqlTransaction sqlTransaction, PlantFinderSearchCriteria sc) in C:\mobottfs\PlantRecords\PlantRecords.DAL\Concrete\PlantFinderDAL.cs:line 71
+   at PlantRecords.Web.PlantFinder.PlantFinderHelper.PlantFinderSearch(Nullable`1 startRow, Nullable`1 pageSize, Nullable`1 orderBy) in C:\mobottfs\PlantRecords\PlantRecords.Web.PlantFinder\PlantFinder\PlantFinderHelper.cs:line 160
+   at PlantRecords.Web.PlantFinder.PlantFinderProfileResults.search() in C:\mobottfs\PlantRecords\PlantRecords.Web.PlantFinder\PlantFinder\PlantFinderProfileResults.aspx.cs:line 61
+   at PlantRecords.Web.PlantFinder.PlantFinderProfileResults.pagingUserControlTop_Search(Object sender, EventArgs e) in C:\mobottfs\PlantRecords\PlantRecords.Web.PlantFinder\PlantFinder\PlantFinderProfileResults.aspx.cs:line 121
+   at PlantRecords.Web.PlantFinder.SearchPagingControl.raiseSearch() in C:\mobottfs\PlantRecords\PlantRecords.Web.PlantFinder\PlantFinder\Controls\SearchPagingControl.ascx.cs:line 225
+   at PlantRecords.Web.PlantFinder.SearchPagingControl.pageButton_Click(Object sender, EventArgs e) in C:\mobottfs\PlantRecords\PlantRecords.Web.PlantFinder\PlantFinder\Controls\SearchPagingControl.ascx.cs:line 326
+   at System.Web.UI.WebControls.ImageButton.OnClick(ImageClickEventArgs e)
+   at System.Web.UI.WebControls.ImageButton.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+[HttpUnhandledException]: Exception of type &#39;System.Web.HttpUnhandledException&#39; was thrown.
+   at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+--><!-- 
+This error page might contain sensitive information because ASP.NET is configured to show verbose error messages using &lt;customErrors mode="Off"/&gt;. Consider using &lt;customErrors mode="On"/&gt; or &lt;customErrors mode="RemoteOnly"/&gt; in production environments.--></body></html>
