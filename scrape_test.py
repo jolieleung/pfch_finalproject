@@ -38,14 +38,12 @@ for page in range(1,357):
 
     print('Doing page',page)
 
-    js_command = """
+    js_command_page = f"""
+		document.getElementById('MainContentPlaceHolder_pagingUserControlTop_pageTextBox').value = {page};
+		document.getElementById('MainContentPlaceHolder_pagingUserControlTop_pageTextBox').dispatchEvent( new KeyboardEvent('keypress', {{ key: 'Enter', code: 'Enter', keyCode: 13 }}  ) )
+	"""
 
-    document.getElementById('MainContentPlaceHolder_pagingUserControlTop_pageTextBox').value = {page};
-    document.getElementById('MainContentPlaceHolder_pagingUserControlTop_pageTextBox').dispatchEvent( new KeyboardEvent('keypress', {{ key: "Enter", code: "Enter", keyCode: 13 }}  ) )
-    
-    """
-
-    driver.execute_script(js_command)
+    driver.execute_script(js_command_page)
 
     html_source_code = driver.page_source
 
